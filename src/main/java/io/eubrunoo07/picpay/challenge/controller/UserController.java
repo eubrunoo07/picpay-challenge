@@ -38,6 +38,7 @@ public class UserController {
                     .email(user.getEmail())
                     .document(user.getDocument())
                     .userType(String.valueOf(user.getUserType()))
+                    .balance(user.getBalance())
                     .build());
         }
         return ResponseEntity.status(HttpStatus.OK).body(response);

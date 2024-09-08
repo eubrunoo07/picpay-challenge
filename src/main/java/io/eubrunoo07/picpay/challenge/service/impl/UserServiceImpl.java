@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UserService {
                 .document(user.getDocument())
                 .email(user.getEmail())
                 .userType(String.valueOf(user.getUserType()))
+                .balance(user.getBalance())
                 .build();
     }
 
@@ -75,6 +77,9 @@ public class UserServiceImpl implements UserService {
             throw new CpfOrCnpjAlreadyExistsException("Cpf or Cnpj already exists");
         }
         else{
+            if(data.getBalance().equals(null)){
+                data.setBalance(BigDecimal.ZERO);
+            }
             return true;
         }
     }

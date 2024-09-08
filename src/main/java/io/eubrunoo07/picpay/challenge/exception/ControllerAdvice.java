@@ -1,9 +1,6 @@
 package io.eubrunoo07.picpay.challenge.exception;
 
-import io.eubrunoo07.picpay.challenge.exception.exceptions.CpfOrCnpjAlreadyExistsException;
-import io.eubrunoo07.picpay.challenge.exception.exceptions.DocumentIsInvalidException;
-import io.eubrunoo07.picpay.challenge.exception.exceptions.EmailALreadyExistsException;
-import io.eubrunoo07.picpay.challenge.exception.exceptions.PasswordTooShortException;
+import io.eubrunoo07.picpay.challenge.exception.exceptions.*;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -48,4 +45,33 @@ public class ControllerAdvice {
         return new ApiError(e.getMessage());
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(UserNotExistsException.class)
+    public ApiError userNotExistsException(UserNotExistsException e){
+        return new ApiError(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MerchantCannotPerformTransferException.class)
+    public ApiError merchantCannotPerformTransferException(MerchantCannotPerformTransferException e){
+        return new ApiError(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(BalanceIsLessThanTransferValueException.class)
+    public ApiError balanceIsLessThanTransferValueException(BalanceIsLessThanTransferValueException e){
+        return new ApiError(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(TransferValueIsInvalidException.class)
+    public ApiError transferValueIsInvalidException(TransferValueIsInvalidException e){
+        return new ApiError(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(SenderIsAlsoReceiveException.class)
+    public ApiError senderIsAlsoReceiveException(SenderIsAlsoReceiveException e){
+        return new ApiError(e.getMessage());
+    }
   }

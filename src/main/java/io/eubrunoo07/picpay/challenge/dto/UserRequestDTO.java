@@ -1,10 +1,13 @@
 package io.eubrunoo07.picpay.challenge.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
+
+import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -19,4 +22,5 @@ public class UserRequestDTO {
     private String password;
     @NotBlank(message = "You must enter the user type")
     private String userType;
+    private BigDecimal balance;
 }

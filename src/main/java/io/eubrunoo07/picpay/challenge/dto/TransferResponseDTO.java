@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class TransferResponseDTO {
+    private String id;
     private String senderName;
     private String receiveName;
     private BigDecimal transferValue;
