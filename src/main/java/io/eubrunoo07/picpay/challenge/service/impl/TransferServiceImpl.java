@@ -9,6 +9,7 @@ import io.eubrunoo07.picpay.challenge.model.Transfer;
 import io.eubrunoo07.picpay.challenge.model.User;
 import io.eubrunoo07.picpay.challenge.repository.TransferRepository;
 import io.eubrunoo07.picpay.challenge.repository.UserRepository;
+import io.eubrunoo07.picpay.challenge.service.MailService;
 import io.eubrunoo07.picpay.challenge.service.TransferService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class TransferServiceImpl implements TransferService {
@@ -24,6 +26,8 @@ public class TransferServiceImpl implements TransferService {
     private TransferRepository transferRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private MailService mailService;
 
     @Override
     public TransferResponseDTO createTransfer(TransferRequestDTO data) {
@@ -56,6 +60,14 @@ public class TransferServiceImpl implements TransferService {
                 transferRepository.save(transfer);
                 userRepository.save(sender);
                 userRepository.save(receive);
+                mailService.sendTextEmail(sender.getEmail(), "Transfer completed successfully", "We inform you that your transfer was carried out and approved successfully.\n" +
+                        "\n" +
+                        "Sender: " + sender.getFullName() + "\n" +
+                        "Receiver: " + receive.getFullName() + "\n" +
+                        "Value: R$ " + transfer.getTransferValue() + "\n" +
+                        "Date: " + transfer.getTransferDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "\n" +
+                        "Time: " + transfer.getTransferDate().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + "\n" +
+                        "Status: " + transfer.getStatus());
             }
         }
 

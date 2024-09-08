@@ -1,3 +1,14 @@
 spring:
   application:
     name: picpaychallenge
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: devbruninhoo@gmail.com
+    password: uqfm jvtw zihy sacg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
