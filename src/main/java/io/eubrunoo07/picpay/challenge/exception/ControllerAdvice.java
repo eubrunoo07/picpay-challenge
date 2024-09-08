@@ -1,6 +1,5 @@
 package io.eubrunoo07.picpay.challenge.exception;
 
-import com.eubrunoo07.securepass.exception.exceptions.*;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;

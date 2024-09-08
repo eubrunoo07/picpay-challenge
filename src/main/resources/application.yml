@@ -1,1 +1,3 @@
-spring.application.name=picpay.challenge
+spring:
+  application:
+    name: picpaychallenge
