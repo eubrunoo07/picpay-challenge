@@ -68,6 +68,15 @@ public class TransferServiceImpl implements TransferService {
                         "Date: " + transfer.getTransferDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "\n" +
                         "Time: " + transfer.getTransferDate().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + "\n" +
                         "Status: " + transfer.getStatus());
+
+                mailService.sendTextEmail(receive.getEmail(), "You received R$ " + transfer.getTransferValue() + " from " + sender.getFullName(), "You have just received a transfer, below are the transaction details:\n" +
+                        "\n" +
+                        "Sender: " + sender.getFullName() + "\n" +
+                        "Receiver: " + receive.getFullName() + "\n" +
+                        "Value: R$ " + transfer.getTransferValue() + "\n" +
+                        "Date: " + transfer.getTransferDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "\n" +
+                        "Time: " + transfer.getTransferDate().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + "\n" +
+                        "Status: " + transfer.getStatus());
             }
         }
 
