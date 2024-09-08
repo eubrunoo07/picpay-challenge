@@ -1,5 +1,6 @@
 package io.eubrunoo07.picpay.challenge.model;
 
+import io.eubrunoo07.picpay.challenge.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,8 +18,8 @@ public class User {
     @Id
     private String id;
     private String fullName;
-    private String cpfOrCnpj;
+    private String document;
     private String email;
     private String password;
-
+    private UserType userType;
 }
