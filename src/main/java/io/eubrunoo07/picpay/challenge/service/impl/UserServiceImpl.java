@@ -6,6 +6,7 @@ import io.eubrunoo07.picpay.challenge.enums.UserType;
 import io.eubrunoo07.picpay.challenge.exception.exceptions.CpfOrCnpjAlreadyExistsException;
 import io.eubrunoo07.picpay.challenge.exception.exceptions.DocumentIsInvalidException;
 import io.eubrunoo07.picpay.challenge.exception.exceptions.EmailALreadyExistsException;
+import io.eubrunoo07.picpay.challenge.exception.exceptions.PasswordTooShortException;
 import io.eubrunoo07.picpay.challenge.model.User;
 import io.eubrunoo07.picpay.challenge.repository.UserRepository;
 import io.eubrunoo07.picpay.challenge.service.UserService;
@@ -46,6 +47,10 @@ public class UserServiceImpl implements UserService {
 
         if(!data.getDocument().matches(documentRegex)){
             throw new DocumentIsInvalidException("Document is invalid");
+        }
+
+        if(data.getPassword().length() < 8){
+            throw new PasswordTooShortException("Your password is so short");
         }
 
         boolean existsByEmail = userRepository

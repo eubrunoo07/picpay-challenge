@@ -3,6 +3,7 @@ package io.eubrunoo07.picpay.challenge.exception;
 import io.eubrunoo07.picpay.challenge.exception.exceptions.CpfOrCnpjAlreadyExistsException;
 import io.eubrunoo07.picpay.challenge.exception.exceptions.DocumentIsInvalidException;
 import io.eubrunoo07.picpay.challenge.exception.exceptions.EmailALreadyExistsException;
+import io.eubrunoo07.picpay.challenge.exception.exceptions.PasswordTooShortException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -38,6 +39,12 @@ public class ControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(DocumentIsInvalidException.class)
     public ApiError documentIsInvalidException(DocumentIsInvalidException e){
+        return new ApiError(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(PasswordTooShortException.class)
+    public ApiError passwordTooShortException(PasswordTooShortException e){
         return new ApiError(e.getMessage());
     }
 
