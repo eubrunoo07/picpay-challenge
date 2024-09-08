@@ -14,6 +14,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -39,6 +41,11 @@ public class UserServiceImpl implements UserService {
                 .email(user.getEmail())
                 .userType(String.valueOf(user.getUserType()))
                 .build();
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     public boolean verifyUserRequestData(UserRequestDTO data){
